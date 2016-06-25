@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     Button button;
     final static String prefs = "prefer";
-    String get_username,a,b,passes;
+    String get_username,a,b,passes,get_pass;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,10 +93,13 @@ public class MainActivity extends AppCompatActivity {
                         editor=sharedPreferences.edit();
 
                         get_username=username.getText().toString();
+                        get_pass=password.getText().toString();
+
 
                         Intent i=new Intent(getApplicationContext(),Welcome.class);
                         startActivity(i);
                         editor.putString("username",get_username);
+                        editor.putString("password",get_pass);
                         editor.apply();
 
                     }
