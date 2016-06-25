@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Register extends AppCompatActivity {
 
     Dbhelper dbhelper = new Dbhelper(this);
@@ -59,21 +62,26 @@ public class Register extends AppCompatActivity {
                     if (name.getText().toString().isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Enter Name", Toast.LENGTH_LONG).show();
                     }
-                    if (userrname.getText().toString().isEmpty()) {
+                   else  if (userrname.getText().toString().isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Enter Username", Toast.LENGTH_LONG).show();
                     }
-                    if (pass.getText().toString().isEmpty()) {
+                    else if (pass.getText().toString().isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Enter Password", Toast.LENGTH_LONG).show();
                     }
-                    if (add.getText().toString().isEmpty()) {
+                    else if (add.getText().toString().isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Enter Address", Toast.LENGTH_LONG).show();
                     }
-                    if (mail.getText().toString().isEmpty()) {
+                    else if (mail.getText().toString().isEmpty()) {
 
                         Toast.makeText(getApplicationContext(), "Enter Email address", Toast.LENGTH_LONG).show();
 
                     }
-                 else
+                    else if (!validateEmail(mail.getText().toString())) {
+                        mail.setError("Invalid Email address");
+                        mail.requestFocus();
+
+                    }
+                    else
 
                 {
                     Connections c = new Connections();
@@ -94,6 +102,15 @@ public class Register extends AppCompatActivity {
             }
 
         });
+
+
+    }
+
+    private boolean validateEmail(String s) {
+        String emailpat="[a-zA-Z0-9._-]+@[a-z]+.[a-z]+";
+        Pattern pattern =Pattern.compile(emailpat);
+        Matcher matcher=pattern.matcher(s);
+        return matcher.matches();
 
 
     }

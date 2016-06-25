@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     if (username.getText().toString().isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Enter Username", Toast.LENGTH_LONG).show();
                     }
-                    if (password.getText().toString().isEmpty()) {
+                   else if (password.getText().toString().isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Enter Password", Toast.LENGTH_LONG).show();
 
                     }
